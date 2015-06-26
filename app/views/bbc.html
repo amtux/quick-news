@@ -1,0 +1,14 @@
+<h3>BBC News</h3>
+
+<bbc-nav></bbc-nav>
+<!-- for auto-loading first item of feed when view loads
+<div data-ng-controller="BbcCtrl" data-ng-init="fetchRssJson(0)"></div> -->
+
+<div ng-repeat="entry in rssResponseData">
+<h5>{{entry.content}}<h5>
+
+</div>
+<!-- <div ng-repeat="item in rssResponseData.responseData.">
+	{{item}}
+</div> -->
+<!-- {{rssResponseData}} -->

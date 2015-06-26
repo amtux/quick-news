@@ -4,10 +4,13 @@
 <!-- for auto-loading first item of feed when view loads
 <div data-ng-controller="BbcCtrl" data-ng-init="fetchRssJson(0)"></div> -->
 
-<div ng-repeat="entry in rssResponseData">
-<h5>{{entry.content}}<h5>
-
+<div class="container">
+	<div ng-repeat="entry in rssResponseData">
+		<h4>{{entry.content}}<h4>
+		<h6><a href="{{entry.link}}">{{entry.link}}</a></h6>
+	</div>
 </div>
+
 <!-- <div ng-repeat="item in rssResponseData.responseData.">
 	{{item}}
 </div> -->

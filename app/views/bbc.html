@@ -1,4 +1,4 @@
-<h3>BBC News</h3>
+<h3 class="text-center">BBC News</h3>
 
 <bbc-nav></bbc-nav>
 <!-- for auto-loading first item of feed when view loads
@@ -8,6 +8,7 @@
 	<div ng-repeat="entry in rssResponseData">
 		<h4>{{entry.content}}<h4>
 		<h6><a href="{{entry.link}}">{{entry.link}}</a></h6>
+		<br>
 	</div>
 </div>
 

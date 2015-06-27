@@ -3,6 +3,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+//google font - news cycles
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
+$feedPost: #D4D4D4;
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -103,3 +108,32 @@ body {
   }
 }
 
+.feedPostDiv {
+  background-color: $feedPost;
+  border-radius: 5px;
+  padding: none;
+  cursor: pointer;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  // font-family: 'News Cycle', sans-serif;
+  // font-weight:700;
+}
+
+.collapsible {
+    -webkit-transition: all .6s linear;
+    opacity: 1;
+    // background: #EFF;
+    // max-height: 150px;
+}
+.collapsible.ng-hide-add,
+.collapsible.ng-hide-remove {
+    display: block !important;
+}
+.collapsible.ng-hide-add-active,
+.collapsible.ng-hide-remove-active {
+    overflow: hidden;
+}
+.collapsible.ng-hide {
+    opacity: 0;
+    max-height: 0;
+}

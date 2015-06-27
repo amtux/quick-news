@@ -4,15 +4,14 @@
 <!-- for auto-loading first item of feed when view loads
 <div data-ng-controller="BbcCtrl" data-ng-init="fetchRssJson(0)"></div> -->
 
-<div class="container">
-	<div ng-repeat="entry in rssResponseData">
-		<h4>{{entry.content}}<h4>
-		<h6><a href="{{entry.link}}">{{entry.link}}</a></h6>
-		<br>
+
+<div ng-repeat="entry in rssResponseData" class="feedPostDiv" id="feedNum{{$index}}">
+	<div ng-click="updatePost({{$index}}, '{{entry.link}}')">
+		<h3>{{entry.content}}<h3>
+		<feed-post></feed-post>
 	</div>
+	<!-- <h6><a href="{{entry.link}}">{{entry.link}}</a></h6> -->
+	<!-- <h6>{{$index}}</h6> -->
+	<!-- <feed-post summarizeUrl="{{entry.link}}" summarizeIndex="{{$index}}"></feed-post> -->
 </div>
 
-<!-- <div ng-repeat="item in rssResponseData.responseData.">
-	{{item}}
-</div> -->
-<!-- {{rssResponseData}} -->

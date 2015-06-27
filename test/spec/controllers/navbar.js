@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: FeedCtrl', function () {
+describe('Controller: NavbarCtrl', function () {
 
   // load the controller's module
   beforeEach(module('quickNewsApp'));
 
-  var FeedCtrl,
+  var NavbarCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    FeedCtrl = $controller('FeedCtrl', {
+    NavbarCtrl = $controller('NavbarCtrl', {
       $scope: scope
     });
   }));

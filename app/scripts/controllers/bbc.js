@@ -27,20 +27,20 @@ angular.module('quickNewsApp')
 				// $scope.rssResponseData[0].postSummary = 0;
 			})
 			.error(function(data, status, headers, config) {
-				console.log('Error loading feed: ' + url + ' ,status: ' + status)
+				console.log('Error loading feed: ' + url + ' ,status: ' + status);
 			});
 		};
 
 		$scope.updatePost = function(postIndex, postUrl) {
 			// $scope.rssResponseData[postIndex].postSummary = "please wait";
 
-			$http.get('http://127.0.0.1:5000/data?url=' + postUrl)
+			$http.get('http://localhost:5000/data?url=' + postUrl)
 			.success(function(data, status, headers, config) {
 				console.log(data);
 				$scope.rssResponseData[postIndex].postSummary = data;
 			})
 			.error(function(data, status, headers, config) {
-				console.log('Error loading feed: ' + postUrl + ', status: ' + status)
+				console.log('Error loading feed: ' + postUrl + ', status: ' + status);
 			});
 		};
 

@@ -2,7 +2,7 @@
 
 ## Backend
 * Python 2.7
-* Flask==0.10.1: Exposing API 
+* Flask==0.10.1: API server
 * textteaser==0.3: Text summarization library
 
 ## Frontend

@@ -14,7 +14,4 @@ angular.module('quickNewsApp')
 			'AngularJS',
 			'Karma'
 		];
-		$scope.supp = function(vari) {
-			console.log(vari);
-		}
 	});

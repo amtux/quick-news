@@ -1,12 +1,9 @@
 # codinsummaries = SummarizeUrl(url)g: utf-8
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, current_app, make_response
 from pyteaser import SummarizeUrl
-import json
-
-
 from datetime import timedelta
-from flask import make_response, request, current_app
 from functools import update_wrapper
+import json
 
 # CORS - Access control snippet from http://flask.pocoo.org/snippets/56/
 def crossdomain(origin=None, methods=None, headers=None,
@@ -55,7 +52,7 @@ def crossdomain(origin=None, methods=None, headers=None,
 app = Flask(__name__)
 
 @app.route('/data')
-@crossdomain(origin='http://localhost:9000', headers='Content-Type')
+@crossdomain(origin='*', headers='Content-Type')
 def names():
 	if 'url' in request.args:
 		url = request.args['url']
@@ -65,4 +62,4 @@ def names():
 		return "false"
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')

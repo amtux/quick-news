@@ -20,32 +20,28 @@ angular.module('quickNewsApp')
 		$scope.fetchRssJson = function(itemNum) {
 			var url = $scope.bbcRssList[itemNum].rssUrl;
 			$http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=2.0&num=20&callback=JSON_CALLBACK&q=' + url)
-				.success(function(data, status, headers, config) {
-					console.log(data);
-					$scope.rssResponseStatus = data.rssResponseStatus;
-					$scope.rssResponseData = data.responseData.feed.entries;
-					$scope.rssResponseData[0].postSummary = 0;
-				})
-				.error(function(data, status, headers, config) {
-					console.log('Error loading feed: ' + url + ' ,status: ' + status)
-				});
+			.success(function(data, status, headers, config) {
+				console.log(data);
+				$scope.rssResponseStatus = data.rssResponseStatus;
+				$scope.rssResponseData = data.responseData.feed.entries;
+				// $scope.rssResponseData[0].postSummary = 0;
+			})
+			.error(function(data, status, headers, config) {
+				console.log('Error loading feed: ' + url + ' ,status: ' + status)
+			});
 		};
 
 		$scope.updatePost = function(postIndex, postUrl) {
-			console.log(postUrl);
+			// $scope.rssResponseData[postIndex].postSummary = "please wait";
 
 			$http.get('http://127.0.0.1:5000/data?url=' + postUrl)
-				.success(function(data, status, headers, config) {
-					console.log(data);
-				})
-				.error(function(data, status, headers, config) {
-					console.log('Error loading feed: ' + postUrl + ', status: ' + status)
-				});
-
-
-
-			$scope.rssResponseData[postIndex].postSummary = 100;
-			console.log($scope.rssResponseData);
+			.success(function(data, status, headers, config) {
+				console.log(data);
+				$scope.rssResponseData[postIndex].postSummary = data;
+			})
+			.error(function(data, status, headers, config) {
+				console.log('Error loading feed: ' + postUrl + ', status: ' + status)
+			});
 		};
 
 		$scope.bbcRssList = [{

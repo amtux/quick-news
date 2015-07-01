@@ -8,10 +8,13 @@
 <div ng-repeat="entry in rssResponseData" class="feedPostDiv" id="feedNum{{$index}}">
 	<div ng-click="updatePost({{$index}}, '{{entry.link}}')">
 		<h3>{{entry.content}}<h3>
-		<feed-post></feed-post>
+		<h4>
+					<ul ng-repeat="sentence in entry.postSummary">
+			<li>{{sentence}}</li>
+		</ul>
+		</h4>
+
 	</div>
-	<!-- <h6><a href="{{entry.link}}">{{entry.link}}</a></h6> -->
-	<!-- <h6>{{$index}}</h6> -->
-	<!-- <feed-post summarizeUrl="{{entry.link}}" summarizeIndex="{{$index}}"></feed-post> -->
+
 </div>
 

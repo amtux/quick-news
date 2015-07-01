@@ -19,7 +19,7 @@ angular.module('quickNewsApp')
 
 			},
 			link: function postLink(scope, element, attrs) {
-				
+				scopepostSummary = $scope.postSummary;
 			}
 		};
 	});

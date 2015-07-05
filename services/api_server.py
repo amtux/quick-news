@@ -3,6 +3,7 @@
 from flask import Flask, make_response, request, current_app, jsonify
 from datetime import timedelta
 from functools import update_wrapper
+from rss_sources import getBbcRss
 
 
 # HTTP Access Control script from http://flask.pocoo.org/snippets/56/
@@ -53,10 +54,19 @@ app = Flask(__name__)
 @app.route('/bbc')
 @crossdomain(origin='*', headers='Content-Type')
 def bbc():
-    with open('./data/business-write.json') as f: 
-        s = f.read()
-    return jsonify(items=s)
-
+    if 'url' in request.args:
+        url = request.args['url']
+        bbcRss = getBbcRss()
+        if url not in bbcRss:
+            return jsonify(items="Requested category doesnt exist")
+        else:
+            fileName = url + ".json"
+            directory = "./data/"
+            with open(directory + fileName) as f: 
+                s = f.read()
+                return jsonify(items=s)
+    else:
+        return jsonify(items="Feed category not defined")
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

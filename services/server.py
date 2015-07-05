@@ -3,7 +3,6 @@
 from flask import Flask, make_response, request, current_app, jsonify
 from datetime import timedelta
 from functools import update_wrapper
-import requests, rss_sources, news_fetcher, time, sched
 
 
 # HTTP Access Control script from http://flask.pocoo.org/snippets/56/
@@ -50,32 +49,13 @@ def crossdomain(origin=None, methods=None, headers=None,
 
 app = Flask(__name__)
 
-scheduler = sched.scheduler(time.time, time.sleep)
-
-def print_event(name):
-    print 'EVENT:', time.time(), name
-
-x = 5
-def updateNews(x):
-
-    re = news_fetcher.fetchNews(x)
-    print(re)
-    scheduler.enter(2, 1, updateNews, (x,))
-
-
-scheduler.enter(2, 1, updateNews, (x,))
-scheduler.run()
 
 @app.route('/bbc')
 @crossdomain(origin='*', headers='Content-Type')
 def bbc():
-    if 'type' in request.args:
-        url = request.args['type']
-        googlePrefix = "http://ajax.googleapis.com/ajax/services/feed/load?v=2.0&num=20&callback=JSON_CALLBACK&q="
-        url = 'http://feeds.bbci.co.uk/news/rss.xml'
-        return resp.text
-    else:
-        return false
+    with open('./data/business-write.json') as f: 
+        s = f.read()
+    return jsonify(items=s)
 
 
 if __name__ == '__main__':

@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import rss_sources, feedparser
-import requests, io, os, json
-from pprint import pprint
+import requests, io, os, json, shutil
+# from pprint import pprint
 from pyteaser import SummarizeUrl
+from shutil import copyfile
 import time
 
 startTime = time.time()
@@ -18,23 +19,34 @@ def getNews(rssDict):
 			os.remove(fileName)
 		fileObj = io.open(fileName, 'wb')
 		feed = feedparser.parse(value)
-		feedData = []
+		feedList = []
 		for post in feed.entries:
 			summary = SummarizeUrl(post.link)
-			summaryJson = json.dumps(summary)
+			# summaryJson = json.dumps(summary)
 
 			dataHolder = {}
-			dataHolder['summary'] = summaryJson
+			dataHolder['summary'] = summary
 			dataHolder['title'] = post.title
 			dataHolder['pstUrl'] = post.link
 
-			feedData.append(json.dumps(dataHolder))
-		feedDataJson = json.dumps(feedData, sort_keys=True, indent=4)
-		
-		fileObj.write(feedDataJson)
+			feedList.append(json.dumps(dataHolder))
+		feedJson = json.dumps(feedList, sort_keys=True, indent=4)
+		fileObj.write(feedJson)
 		print('wrote file: %s' % fileName)
 		fileObj.close
 
+	for key,value in rssDict.items():
+		source = "./data/" + key + "-write.json"
+		destination = "./data/" + key + ".json"
 
-getNews(bbcRssDict)
-print("--- %s seconds ---" % (time.time() - startTime))
+		if os.path.exists(source):
+			copyfile(source, destination)
+			print('copied file: %s' % destination)
+		else:
+			print ('cannot copy file: source %s not found' % source)
+
+	print("--- %s seconds ---\n" % (time.time() - startTime))
+
+while True:
+	getNews(bbcRssDict)
+	

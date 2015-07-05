@@ -8,15 +8,24 @@ from pyteaser import SummarizeUrl
 from shutil import copyfile
 import time
 
-startTime = time.time()
+
 
 bbcRssDict = rss_sources.getBbcRss()
 
 def getNews(rssDict):
+	startTime = time.time()
+	directory = "./data/"
+
+	if not os.path.exists(directory):
+		os.makedirs(directory)
+		print('created file: %s' % directory)
+
 	for key, value in rssDict.items():
-		fileName = "./data/" + key + "-write.json"
+		fileName = directory + key + "-write.json"
 		if os.path.exists(fileName):
 			os.remove(fileName)
+			print('deleted existing file: %s' % fileName)
+
 		fileObj = io.open(fileName, 'wb')
 		feed = feedparser.parse(value)
 		feedList = []
@@ -36,8 +45,8 @@ def getNews(rssDict):
 		fileObj.close
 
 	for key,value in rssDict.items():
-		source = "./data/" + key + "-write.json"
-		destination = "./data/" + key + ".json"
+		source = directory + key + "-write.json"
+		destination = directory + key + ".json"
 
 		if os.path.exists(source):
 			copyfile(source, destination)
@@ -47,6 +56,10 @@ def getNews(rssDict):
 
 	print("--- %s seconds ---\n" % (time.time() - startTime))
 
+counter = 1
 while True:
 	getNews(bbcRssDict)
+	print("%dth iteration.\nSleeping for 10 minutes\n" % counter)
+	time.sleep(600)
+	counter += 1
 	

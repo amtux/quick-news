@@ -59,7 +59,7 @@ def getNews(rssDict):
 counter = 1
 while True:
 	getNews(bbcRssDict)
-	print("%dth iteration.\nSleeping for 10 minutes\n" % counter)
+	print("Iteration # %d complete.\nSleeping for 10 minutes\n" % counter)
 	time.sleep(600)
 	counter += 1
 	

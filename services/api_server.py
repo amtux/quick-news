@@ -4,6 +4,7 @@ from flask import Flask, make_response, request, current_app, jsonify
 from datetime import timedelta
 from functools import update_wrapper
 from rss_sources import getBbcRss
+import json
 
 
 # HTTP Access Control script from http://flask.pocoo.org/snippets/56/
@@ -63,8 +64,8 @@ def bbc():
             fileName = url + ".json"
             directory = "./data/"
             with open(directory + fileName) as f: 
-                s = f.read()
-                return jsonify(items=s)
+                s = json.load(f)
+            return jsonify(items=s)
     else:
         return jsonify(items="Feed category not defined")
 

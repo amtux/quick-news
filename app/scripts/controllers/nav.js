@@ -2,16 +2,19 @@
 
 /**
  * @ngdoc function
- * @name quickNewsApp.controller:MainCtrl
+ * @name quickNewsApp.controller:NavCtrl
  * @description
- * # MainCtrl
+ * # NavCtrl
  * Controller of the quickNewsApp
  */
 angular.module('quickNewsApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('NavCtrl', function ($scope, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
   });

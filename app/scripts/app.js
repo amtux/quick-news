@@ -29,6 +29,16 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/bbc', {
+        templateUrl: 'views/bbc.html',
+        controller: 'BbcCtrl',
+        controllerAs: 'bbc'
+      })
+      .when('/bbc', {
+        templateUrl: 'views/bbc.html',
+        controller: 'BbcCtrl',
+        controllerAs: 'bbc'
+      })
       .otherwise({
         redirectTo: '/'
       });

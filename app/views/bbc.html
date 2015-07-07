@@ -16,7 +16,7 @@
 <div ng-repeat="entry in entries" id="feedNum{{$index}}" class="row marketing">
   <div class="feed-entry">
       
-        <img src="{{entry[3]}}" class="pull-right feed-image">
+        <img ng-src="{{entry[3]}}" class="pull-right feed-image">
       <h4>{{entry[0]}}</h4>
       <div ng-repeat="sentence in entry[2]">
         {{sentence}}  

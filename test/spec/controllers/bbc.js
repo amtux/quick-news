@@ -5,12 +5,13 @@ describe('Controller: BbcCtrl', function () {
   // load the controller's module
   beforeEach(module('quickNewsApp'));
 
-  var BbcCtrl;
+  var BbcCtrl, scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope) { 
+    scope = $rootScope.$new();
     BbcCtrl = $controller('BbcCtrl', {
-      // place here mocked dependencies
+      $scope: scope
     });
   }));
 
@@ -18,3 +19,4 @@ describe('Controller: BbcCtrl', function () {
     expect(BbcCtrl.awesomeThings.length).toBe(3);
   });
 });
+

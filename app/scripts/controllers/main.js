@@ -8,7 +8,7 @@
  * Controller of the quickNewsApp
  */
 angular.module('quickNewsApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

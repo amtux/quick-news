@@ -23,20 +23,21 @@ angular.module('quickNewsApp')
 		this.tab = activeTab;
 		$scope.getFeed(activeTab);
 	};
+
 	$scope.getActiveTab = function() {
 		return this.tab;
 	};
 
 	$scope.getFeed = function(category) {
-		var url = '//52.5.127.37:5000/bbc?url=' + category
+		/*jshint unused: false */
+		var url = '//localhost:5000/bbc?url=' + category;
 		$http.get(url)
 		.success(function(data, status, headers, config) {
-			console.log(data);
-			$scope.item = data;
-			// console.log($scope.item.items[0][2][0]);
+			$scope.entries = data.items;
+			console.log($scope.entries);
 		})
 		.error(function(data, status, headers, config) {
-			console.log('Error loading feed: ' + postUrl + ', status: ' + status);
+			console.log('Error loading feed: ' + url + ', status: ' + status);
 		});
 	};
   });

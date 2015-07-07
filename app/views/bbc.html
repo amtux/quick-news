@@ -1,6 +1,6 @@
 <section>
-	<ul class="nav nav-pills">
-		<li ng-class="{active:isSet('top-stories')}"><a href="" ng-click="setTab('top-stories')">Top Stories</a></li>
+	<ul class="nav nav-pills" id="bbcNav">
+		<li ng-init="setTab('top-stories')" ng-class="{active:isSet('top-stories')}"><a href="" ng-click="setTab('top-stories')">Top Stories</a></li>
 		<li ng-class="{active:isSet('world')}"><a href="" ng-click="setTab('world')">World</a></li>
 		<li ng-class="{active:isSet('uk')}"><a href="" ng-click="setTab('uk')">UK</a></li>
 		<li ng-class="{active:isSet('business')}"><a href="" ng-click="setTab('business')">Business</a></li>
@@ -12,4 +12,17 @@
 		<li ng-class="{active:isSet('environment')}"><a href="" ng-click="setTab('environment')">Entertainment &amp; Arts</a></li>
 	</ul>
 </section>
-<p>This is the bbc view.</p>
+
+<div ng-repeat="entry in entries" id="feedNum{{$index}}" class="row marketing">
+  <div class="feed-entry">
+      
+        <img src="{{entry[3]}}" class="pull-right feed-image">
+      <h4>{{entry[0]}}</h4>
+      <div ng-repeat="sentence in entry[2]">
+        {{sentence}}  
+        </div>
+        <br> More at <a href="{{entry[1]}}" target="_blank1">{{entry[1]}}</a>
+      </div>
+    <!-- </div> -->
+  </div>
+</div>

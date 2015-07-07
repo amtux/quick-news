@@ -2,7 +2,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+// @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
+$feedPost: #D4D4D4;
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -88,4 +90,32 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+
+.feed-image {
+  max-width:256px;
+  padding:3px;
+  border-radius: 5px;
+}
+
+.feed-entry {
+  background-color: $feedPost;
+  border-radius: 5px;
+  // cursor: pointer;
+  // font-family: 'Source Sans Pro', sans-serif;
+  // font-weight: bold;
+  padding: 1px;
 }

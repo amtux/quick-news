@@ -65,7 +65,7 @@ def bbc():
             directory = "./data/"
             with open(directory + fileName) as f: 
                 s = json.load(f)
-            return jsonify(value=s)
+            return jsonify(items=s)
     else:
         return jsonify(items="Feed category not defined")
 

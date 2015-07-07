@@ -3,12 +3,11 @@
 
 import rss_sources, feedparser
 import requests, io, os, json, shutil
-# from pprint import pprint
+from pprint import pprint
 from pyteaser import SummarizeUrl
 from shutil import copyfile
 import time
-
-
+import requests
 
 bbcRssDict = rss_sources.getBbcRss()
 
@@ -28,9 +27,13 @@ def getNews(rssDict):
 		feed = feedparser.parse(value)
 		feedDict = {}
 		feedCounter = 0
-		for post in feed.entries:
+		for post in feed.entries[:20]: #limit to 20 entries per feed
 			summary = SummarizeUrl(post.link)
-			feedDict[feedCounter] = [post.link, post.title, summary]
+			imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
+				post.title)	
+			imgSearchData = requests.get(imgSearch).json()
+			imgBestUrl = imgSearchData['responseData']['results'][0]['url']
+			feedDict[feedCounter] = [post.title, post.link, summary, imgBestUrl]
 			feedCounter += 1
 		with open(fileName, 'w') as fp:
 			json.dump(feedDict, fp)

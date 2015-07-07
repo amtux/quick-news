@@ -30,7 +30,7 @@ angular.module('quickNewsApp')
 
 	$scope.getFeed = function(category) {
 		/*jshint unused: false */
-		var url = '//172.31.5.121:5000/bbc?url=' + category;
+		var url = '//52.5.127.37:5000/bbc?url=' + category;
 		$http.get(url)
 		.success(function(data, status, headers, config) {
 			$scope.entries = data.items;

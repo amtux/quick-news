@@ -11,7 +11,7 @@ import requests
 
 bbcRssDict = rss_sources.getBbcRss()
 
-def getNews(rssDict):
+def getNews(rssDict, service, searchedImages):
 	startTime = time.time()
 	directory = "./data/"
 
@@ -28,12 +28,29 @@ def getNews(rssDict):
 		feedDict = {}
 		feedCounter = 0
 		for post in feed.entries[:20]: #limit to 20 entries per feed
+			imageUrl = None
+			if post.link in searchedImages:
+				imageUrl = searchedImages[post.link]
+				print('found image in cache for %s. done!' % post.link)
+			else:
+				query = post.title.split()
+				query = '+'.join(query)
+				imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
+					service + "+" + query)
+				imgSearchRequest = requests.get(imgSearch)
+
+				if (imgSearchRequest.status_code == 200):
+					imgSearchData = imgSearchRequest.json()
+					imgUrl = imgSearchData['responseData']['results'][0]['url'] #on success get best img
+					searchedImages[post.link] = imgUrl	# add to image cache if img found
+					print('image not in cache but new one fetched for %s. done!' % post.link)
+				else:
+					imgUrl = "404"
+					print('image not in cache. also couldnt fetch new one for %s. failed!' % post.link)
+
+	
 			summary = SummarizeUrl(post.link)
-			imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
-				post.title)	
-			imgSearchData = requests.get(imgSearch).json()
-			imgBestUrl = imgSearchData['responseData']['results'][0]['url']
-			feedDict[feedCounter] = [post.title, post.link, summary, imgBestUrl]
+			feedDict[feedCounter] = [post.title, post.link, summary, imgUrl]
 			feedCounter += 1
 		with open(fileName, 'w') as fp:
 			json.dump(feedDict, fp)
@@ -50,9 +67,10 @@ def getNews(rssDict):
 			print ('cannot copy file: source %s not found' % source)
 	print("--- %s seconds ---\n" % (time.time() - startTime))
 
+searchedImages = {}
 counter = 1
 while True:
-	getNews(bbcRssDict)
+	getNews(bbcRssDict, 'bbc', searchedImages)
 	print("Iteration # %d complete.\nSleeping for 10 minutes\n" % counter)
 	time.sleep(600)
 	counter += 1

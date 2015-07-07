@@ -106,7 +106,8 @@ body {
 
 
 .feed-image {
-  max-width:256px;
+  max-width: 300px;
+  max-height: 300px;
   padding:3px;
   border-radius: 5px;
 }
@@ -114,6 +115,7 @@ body {
 .feed-entry {
   background-color: $feedPost;
   border-radius: 5px;
+  overflow: hidden;
   // cursor: pointer;
   // font-family: 'Source Sans Pro', sans-serif;
   // font-weight: bold;

@@ -27,8 +27,8 @@ def getNews(rssDict, service, searchedImages):
 		feed = feedparser.parse(value)
 		feedDict = {}
 		feedCounter = 0
-		for post in feed.entries[:20]: #limit to 20 entries per feed
-			imgUrl = None
+		for post in feed.entries[:10]: #limit to 10 entries per feed
+			imgUrl = "none"
 			if post.link in searchedImages:
 				imgUrl = searchedImages[post.link]
 				print('found image in cache for %s. done!' % post.link)
@@ -41,13 +41,16 @@ def getNews(rssDict, service, searchedImages):
 
 				if (imgSearchRequest.status_code == 200):
 					imgSearchData = imgSearchRequest.json()
-					imgUrl = imgSearchData['responseData']['results'][0]['url'] #on success get best img
-					searchedImages[post.link] = imgUrl	# add to image cache if img found
-					print('image not in cache but new one fetched for %s. done!' % post.link)
+					try:
+						imgUrl = imgSearchData['responseData']['results'][0]['url'] #on success get best img
+						searchedImages[post.link] = imgUrl	# add to image cache if img found
+						print('image not in cache but new one fetched for %s. done!' % post.link)
+					except (TypeError, IndexError):
+						print('DENIAL FROM GOOGLE for %s. failed!' % post.link)
+						imgUrl = "200F"
 				else:
 					imgUrl = "404"
 					print('image not in cache. also couldnt fetch new one for %s. failed!' % post.link)
-
 	
 			summary = SummarizeUrl(post.link)
 			feedDict[feedCounter] = [post.title, post.link, summary, imgUrl]
@@ -71,7 +74,7 @@ searchedImages = {}
 counter = 1
 while True:
 	getNews(bbcRssDict, 'bbc', searchedImages)
-	print("Iteration # %d complete.\nSleeping for 10 minutes\n" % counter)
-	time.sleep(600)
+	print("Iteration # %d complete.\nSleeping for 1 hour\n" % counter)
+	time.sleep(3600)
 	counter += 1
 	

@@ -28,9 +28,9 @@ def getNews(rssDict, service, searchedImages):
 		feedDict = {}
 		feedCounter = 0
 		for post in feed.entries[:20]: #limit to 20 entries per feed
-			imageUrl = None
+			imgUrl = None
 			if post.link in searchedImages:
-				imageUrl = searchedImages[post.link]
+				imgUrl = searchedImages[post.link]
 				print('found image in cache for %s. done!' % post.link)
 			else:
 				query = post.title.split()

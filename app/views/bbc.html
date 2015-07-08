@@ -9,7 +9,7 @@
 		<li ng-class="{active:isSet('education-and-family')}"><a href="" ng-click="setTab('education-and-family')">Education</a></li>
 		<li ng-class="{active:isSet('science-and-environment')}"><a href="" ng-click="setTab('science-and-environment')">Science</a></li>
 		<li ng-class="{active:isSet('technology')}"><a href="" ng-click="setTab('technology')">Technology</a></li>
-		<li ng-class="{active:isSet('environment')}"><a href="" ng-click="setTab('environment')">Entertainment</a></li>
+		<li ng-class="{active:isSet('entertainment-and-arts')}"><a href="" ng-click="setTab('entertainment-and-arts')">Entertainment</a></li>
 	</ul>
 </section>
 <loading-feed class="text-center"></loading-feed>
@@ -17,14 +17,14 @@
 <div class="container">
   <div ng-repeat="entry in entries" id="feedNum{{$index}}" class="feed-entry row">
     <h4><b>{{entry[0]}}</b></h4>
-    <div class="col-xs-12 col-sm-12 col-md-8">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <img ng-src="{{entry[3]}}" err-src="http://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png" class="feed-image">
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
       <div ng-repeat="sentence in entry[2]" class="feed-sentences">
         <li>{{sentence}}</li>
       </div>
       <p>Full article: <a ng-href="{{entry[1]}}" target="_blank">{{entry[1]}}</a></p>
-    </div>
-    <div class="col-xs-6 col-md-4">
-      <img ng-src="{{entry[3]}}" err-src="http://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png" class="pull-right feed-image">
     </div>
   </div>
 </div>

@@ -4,7 +4,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 // @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
-$feedPost: #D4D4D4;
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -97,6 +96,11 @@ body {
     max-width: 1024px;
   }
 }
+@media (min-width: 768px) and (max-width: 1000px) {
+   .collapse {
+       display: none !important;
+   }
+}
 
 @media screen and (min-width: 1200px) {
   .container {
@@ -110,14 +114,17 @@ body {
   max-height: 300px;
   padding:3px;
   border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feed-entry {
-  background-color: $feedPost;
-  border-radius: 5px;
-  overflow: hidden;
-  // cursor: pointer;
-  // font-family: 'Source Sans Pro', sans-serif;
-  // font-weight: bold;
-  padding: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 40px 0;
+
+  p + h4 {
+    margin-top: 28px;
+  }
 }

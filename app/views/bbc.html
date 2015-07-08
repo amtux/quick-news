@@ -1,28 +1,42 @@
 <section>
-	<ul class="nav nav-pills" id="bbcNav">
-		<li ng-init="setTab('top-stories')" ng-class="{active:isSet('top-stories')}"><a href="" ng-click="setTab('top-stories')">Top Stories</a></li>
+	<ul class="nav nav-tabs nav-justified" id="bbcNav">
+		<li ng-init="setTab('top-stories')" ng-class="{active:isSet('top-stories')}"><a href="" ng-click="setTab('top-stories')">Top</a></li>
 		<li ng-class="{active:isSet('world')}"><a href="" ng-click="setTab('world')">World</a></li>
 		<li ng-class="{active:isSet('uk')}"><a href="" ng-click="setTab('uk')">UK</a></li>
 		<li ng-class="{active:isSet('business')}"><a href="" ng-click="setTab('business')">Business</a></li>
 		<li ng-class="{active:isSet('politics')}"><a href="" ng-click="setTab('politics')">Politics</a></li>
 		<li ng-class="{active:isSet('health')}"><a href="" ng-click="setTab('health')">Health</a></li>
-		<li ng-class="{active:isSet('education-and-family')}"><a href="" ng-click="setTab('education-and-family')">Education &amp; Family</a></li>
-		<li ng-class="{active:isSet('science-and-environment')}"><a href="" ng-click="setTab('science-and-environment')">Science &amp; Environment</a></li>
+		<li ng-class="{active:isSet('education-and-family')}"><a href="" ng-click="setTab('education-and-family')">Education</a></li>
+		<li ng-class="{active:isSet('science-and-environment')}"><a href="" ng-click="setTab('science-and-environment')">Science</a></li>
 		<li ng-class="{active:isSet('technology')}"><a href="" ng-click="setTab('technology')">Technology</a></li>
-		<li ng-class="{active:isSet('environment')}"><a href="" ng-click="setTab('environment')">Entertainment &amp; Arts</a></li>
+		<li ng-class="{active:isSet('environment')}"><a href="" ng-click="setTab('environment')">Entertainment</a></li>
 	</ul>
 </section>
 
-<div ng-repeat="entry in entries" id="feedNum{{$index}}" class="row marketing">
+<div class="container">
+  <div ng-repeat="entry in entries" id="feedNum{{$index}}" class="feed-entry row">
+    <h4><b>{{entry[0]}}</b></h4>
+    <div class="col-xs-12 col-sm-12 col-md-8">
+      <div ng-repeat="sentence in entry[2]" class="feed-sentences">
+        <li>{{sentence}}</li>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <img ng-src="{{entry[3]}}" class="pull-right feed-image">
+    </div>
+  </div>
+</div>
+<!-- <div ng-repeat="entry in entries" id="feedNum{{$index}}" class="row marketing">
   <div class="feed-entry">
       
         <img ng-src="{{entry[3]}}" class="pull-right feed-image">
       <h4>{{entry[0]}}</h4>
-      <div ng-repeat="sentence in entry[2]">
-        {{sentence}}  
+      <ul>
+        <div ng-repeat="sentence in entry[2]">
+          <li>{{sentence}}</li>
         </div>
-        <br> More at <a href="{{entry[1]}}" target="_blank1">{{entry[1]}}</a>
-      </div>
-    <!-- </div> -->
+      </ul>
+      <br> More at <a href="{{entry[1]}}" target="_blank1">{{entry[1]}}</a>
+    </div>
   </div>
-</div>
+</div> -->

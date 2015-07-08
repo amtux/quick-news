@@ -30,11 +30,13 @@ angular.module('quickNewsApp')
 
 	$scope.getFeed = function(category) {
 		/*jshint unused: false */
+		$scope.loading = true;
 		var url = '//cvps.amanuppal.ca:5000/bbc?url=' + category;
 		$http.get(url)
 		.success(function(data, status, headers, config) {
 			$scope.entries = data.items;
 			console.log($scope.entries);
+			$scope.loading = false;
 		})
 		.error(function(data, status, headers, config) {
 			console.log('Error loading feed: ' + url + ', status: ' + status);

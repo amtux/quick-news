@@ -9,7 +9,6 @@
 angular.module('quickNewsApp')
   .directive('errSrc', function () {
     return {
-      template: '<div></div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
       	element.bind('error', function() {
@@ -17,7 +16,6 @@ angular.module('quickNewsApp')
               attrs.$set('src', attrs.errSrc);
             }
         });
-        element.text('this is the errSrc directive');
       }
     };
   });

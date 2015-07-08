@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: errSrc', function () {
+describe('Directive: loadingFeed', function () {
 
   // load the directive's module
   beforeEach(module('quickNewsApp'));
@@ -13,8 +13,8 @@ describe('Directive: errSrc', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<err-src></err-src>');
+    element = angular.element('<loading-feed></loading-feed>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('');
+    expect(element.text()).toBe('LOADING...');
   }));
 });

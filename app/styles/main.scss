@@ -100,16 +100,6 @@ body {
   }
 }
 
-@media screen and (max-width: 768) {
-  .feed-image {
-    max-width: 200px;
-    max-height: 200px;
-    padding:none;
-    border-radius: 1px;
-    display: center;
-    margin: 0 auto;
-  }
-}
 
 @media screen and (min-width: 1024px) {
   .container {
@@ -122,6 +112,14 @@ body {
     border-radius: 5px;
     display: block;
     margin: 0 auto;
+  }
+  .feed-entry {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 40px 0;
+    p + h4 {
+      margin-top: 28px;
+    }
   }
 }
 
@@ -138,27 +136,15 @@ body {
     display: block;
     margin: 0 auto;
   }
+  .feed-entry {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 40px 0;
+    p + h4 {
+      margin-top: 28px;
+    }
+  }
 }
-
-
-// .feed-image {
-//   max-width: 300px;
-//   max-height: 300px;
-//   padding:3px;
-//   border-radius: 5px;
-//   display: block;
-//   margin: 0 auto;
-// }
-
-// .feed-entry {
-//   padding-left: 15px;
-//   padding-right: 15px;
-//   margin: 40px 0;
-
-//   p + h4 {
-//     margin-top: 28px;
-//   }
-// }
 
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -166,28 +152,20 @@ body {
   .feed-image {
     max-width: 250px;
     max-height: 250px;
-    padding-left:5px;
+    padding-left:none;
     border-radius: 5px;
+    left: 0px;
+    position:absolute;
     display: block;
     margin: 0 auto;
-  }
-
-  .feed-entry {
-    padding-left: 5px;
-    padding-right: 5px;
-    margin: 40px 0;
-
-    p + h4 {
-      margin-top: 28px;
-    }
   }
 
 }
 
 @media  screen and (max-width: 768px) {
   .feed-image {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 300px;
+    max-height: 300px;
     padding-left:5px;
     border-radius: 5px;
     display: block;

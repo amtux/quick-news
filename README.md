@@ -9,6 +9,8 @@
 ## Frontend
 * Angular.js scaffolded using [yo angular generator](https://github.com/yeoman/generator-angular)
 
+## [DEMO](http://quicknews.amanuppal.ca/)
+
 ## Install
 * Clone this repository
 * `pip install pyteaser`
@@ -28,5 +30,4 @@
 * Run `grunt` for building and `grunt serve` for preview
 
 ## Testing
-
 * Running `grunt test` will run the unit tests for Angular with karma

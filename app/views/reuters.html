@@ -1,15 +1,15 @@
 <section>
-	<ul class="nav nav-tabs nav-justified" id="bbcNav">
+	<ul class="nav nav-tabs nav-justified" id="reutersNav">
 		<li ng-init="setTab('top-stories')" ng-class="{active:isSet('top-stories')}"><a href="" ng-click="setTab('top-stories')">Top</a></li>
 		<li ng-class="{active:isSet('world')}"><a href="" ng-click="setTab('world')">World</a></li>
-		<li ng-class="{active:isSet('uk')}"><a href="" ng-click="setTab('uk')">UK</a></li>
+		<li ng-class="{active:isSet('us')}"><a href="" ng-click="setTab('us')">US</a></li>
 		<li ng-class="{active:isSet('business')}"><a href="" ng-click="setTab('business')">Business</a></li>
 		<li ng-class="{active:isSet('politics')}"><a href="" ng-click="setTab('politics')">Politics</a></li>
+		<li ng-class="{active:isSet('science')}"><a href="" ng-click="setTab('science')">Science</a></li>
 		<li ng-class="{active:isSet('health')}"><a href="" ng-click="setTab('health')">Health</a></li>
-		<li ng-class="{active:isSet('education-and-family')}"><a href="" ng-click="setTab('education-and-family')">Edu</a></li>
-		<li ng-class="{active:isSet('science-and-environment')}"><a href="" ng-click="setTab('science-and-environment')">Sci</a></li>
-		<li ng-class="{active:isSet('technology')}"><a href="" ng-click="setTab('technology')">Tech</a></li>
-		<li ng-class="{active:isSet('entertainment-and-arts')}"><a href="" ng-click="setTab('entertainment-and-arts')">Arts</a></li>
+		<li ng-class="{active:isSet('technology-and-science')}"><a href="" ng-click="setTab('technology-and-science')">Tech</a></li>
+		<li ng-class="{active:isSet('sports')}"><a href="" ng-click="setTab('sports')">Sports</a></li>
+		<li ng-class="{active:isSet('entertainment')}"><a href="" ng-click="setTab('entertainment')">Arts</a></li>
 	</ul>
 </section>
 <loading-feed class="text-center"></loading-feed>
@@ -24,7 +24,7 @@
       <div ng-repeat="sentence in entry[2]" class="feed-sentences">
         <li>{{sentence}}</li>
       </div>
-      <p><b><a ng-href="{{entry[1]}}" target="_blank">View full article at BBC website</a></b></p>
+      <p><b><a ng-href="{{entry[1]}}" target="_blank">View full article at Reuters website</a></b></p>
     </div>
     <hr>
   </div>

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name quickNewsApp.controller:BbcCtrl
+ * @name quickNewsApp.controller:CbcCtrl
  * @description
- * # BbcCtrl
+ * # CbcCtrl
  * Controller of the quickNewsApp
  */
 angular.module('quickNewsApp')
-  .controller('BbcCtrl', function ($scope, $http) {
+  .controller('CbcCtrl', function ($scope, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -31,7 +31,7 @@ angular.module('quickNewsApp')
 	$scope.getFeed = function(category) {
 		/*jshint unused: false */
 		$scope.loading = true;
-		var url = '//quicknews.amanuppal.ca:5000/bbc?url=' + category;
+		var url = '//quicknews.amanuppal.ca:5000/cbc?url=' + category;
 		$http.get(url)
 		.success(function(data, status, headers, config) {
 			$scope.entries = data.items;

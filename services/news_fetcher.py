@@ -14,7 +14,7 @@ def getNews(rssDict, service, searchedImages):
 	# create directory for service if doesnt yet exist
 	if not os.path.exists(directory):
 		os.makedirs(directory)
-		print('created file: %s' % directory)
+		print('created directory: %s' % directory)
 	# iterate each feed in service -> fetch data -> write to temp file -> copy to actual file
 	for key, value in rssDict.items():
 		fileName = directory + key + "-write.json"
@@ -88,8 +88,14 @@ while True:
 	getNews(bbcRssDict, 'bbc', searchedImages)
 	print("SERVICE BBC COMPLETE!")
 
+	time.sleep(300)
+	print("sleeping for 5 minutes to calm down Google")
+
 	getNews(cbcRssDict, 'cbc', searchedImages)
 	print("SERVICE CBC COMPLETE!")
+
+	time.sleep(300)
+	print("sleeping for 5 minutes to calm down Google")
 
 	getNews(reutersRssDict, 'reuters', searchedImages)
 	print("SERVICE REUTERS COMPLETE!")

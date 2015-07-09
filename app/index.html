@@ -42,7 +42,9 @@
             <ul class="nav navbar-nav" ng-controller="NavCtrl">
               <li ng-class="{ active: isActive('/')}"><a href="#/">Home</a></li>
               <li ng-class="{ active: isActive('/bbc')}"><a ng-href="#/bbc">BBC</a></li>
-              <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
+              <li ng-class="{ active: isActive('/cbc')}"><a ng-href="#/cbc">CBC</a></li>
+              <li ng-class="{ active: isActive('/reuters')}"><a ng-href="#/reuters">Reuters</a></li>
+              <!-- <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li> -->
             </ul>
           </div>
         </div>
@@ -93,6 +95,8 @@
         <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/directives/errsrc.js"></script>
         <script src="scripts/directives/loadingfeed.js"></script>
+        <script src="scripts/controllers/cbc.js"></script>
+        <script src="scripts/controllers/reuters.js"></script>
         <!-- endbuild -->
 </body>
 </html>

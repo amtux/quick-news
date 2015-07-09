@@ -5,3 +5,4 @@
 /bower_components
 /services/data
 /services/*.log
+*.pyc

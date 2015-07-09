@@ -9,7 +9,7 @@
 angular.module('quickNewsApp')
   .directive('errSrc', function () {
     return {
-      restrict: 'E',
+      restrict: 'A',
       link: function postLink(scope, element, attrs) {
       	element.bind('error', function() {
             if (attrs.src !== attrs.errSrc) {

@@ -71,7 +71,7 @@ def bbc():
 
 @app.route('/cbc')
 @crossdomain(origin='*', headers='Content-Type')
-def bbc():
+def cbc():
     if 'url' in request.args:
         url = request.args['url']
         cbcRss = getCbcRss()

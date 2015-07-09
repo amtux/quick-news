@@ -26,7 +26,7 @@ def getNews(rssDict, service, searchedImages):
 		feedDict = {}
 		feedCounter = 0
 		# loop through posts in category
-		for post in feed.entries[:1]: #limit to 10 entries per feed
+		for post in feed.entries[:10]: #limit to 10 entries per feed
 			imgUrl = "none"
 			# caching enabled. this prevents asking google for images every-time
 			if post.link in searchedImages:

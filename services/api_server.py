@@ -87,4 +87,4 @@ def cbc():
         return jsonify(items="Feed category not defined")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0',threaded=true)
+    app.run(debug=True, host='0.0.0.0',threaded=True)

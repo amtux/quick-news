@@ -43,13 +43,21 @@ def getNews(rssDict, service, searchedImages):
 				if (imgSearchRequest.status_code == 200): #on get success
 					imgSearchData = imgSearchRequest.json()
 					try:
+						getNextImg = 1;
 						imgUrl = imgSearchData['responseData']['results'][0]['url']
-						imgUrl = urllib2.unquote(imgUrl);
+						if (service == 'reuters'):
+							imgUrl = urllib2.unquote(imgUrl);
+						
+						badBbcUrl = 'http://ichef.bbci.co.uk/news/660/media/images/80201000/png/_80201000_breaking_image_large-3.png'
+						if (service == 'bbc' and imgUrl == badBbcUrl):
+							imgUrl = imgSearchData['responseData']['results'][1]['url']
+							getNextImg = 2
+
 						# check if select url is actually an image
 						# if not, choose the next url
 						if not 'image' in requests.get(imgUrl).headers['content-type']:
 							print("MISSED FIRST IMG URL = BAD CONTENT. SECOND FETCH!")
-							imgUrl = imgSearchData['responseData']['results'][1]['url']
+							imgUrl = imgSearchData['responseData']['results'][getNextImg]['url']
 						searchedImages[post.link] = imgUrl	# add to image cache if img found
 						print('image not in cache but new one fetched for %s. done!' % post.link)
 					except (TypeError, IndexError, requests.exceptions.MissingSchema):

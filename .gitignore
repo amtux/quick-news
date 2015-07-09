@@ -5,3 +5,4 @@
 /bower_components
 /services/data
 /services/*.log
+!/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss

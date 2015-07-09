@@ -1,8 +1,9 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bootswatch/readable/variables";
+@import "bootswatch/readable/bootswatch";
 // endbower
-// @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
 .browsehappy {
   margin: 0.2em 0;

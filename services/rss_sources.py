@@ -20,10 +20,25 @@ cbcRss['health'] = 'http://rss.cbc.ca/lineup/health.xml'
 cbcRss['technology-and-science'] = 'http://rss.cbc.ca/lineup/technology.xml'
 cbcRss['sports'] = 'http://rss.cbc.ca/lineup/sports.xml'
 cbcRss['toronto'] = 'http://rss.cbc.ca/lineup/canada-toronto.xml'
+cbcRss['arts-and-entertainment'] = 'http://rss.cbc.ca/lineup/arts.xml'
 
+reutersRss = {}
+reutersRss['top-stories'] = 'http://feeds.reuters.com/reuters/topNews'
+reutersRss['world'] = 'http://feeds.reuters.com/Reuters/worldNews'
+reutersRss['us'] = 'http://feeds.reuters.com/Reuters/domesticNews'
+reutersRss['business'] = 'http://feeds.reuters.com/reuters/businessNews'
+reutersRss['politics'] = 'http://feeds.reuters.com/Reuters/PoliticsNews'
+reutersRss['science'] = 'http://feeds.reuters.com/reuters/technologyNews'
+reutersRss['health'] = 'http://feeds.reuters.com/reuters/healthNews'
+reutersRss['technology'] = 'http://feeds.reuters.com/reuters/technologyNews'
+reutersRss['sports'] = 'http://feeds.reuters.com/reuters/sportsNews'
+reutersRss['entertainment'] = 'http://feeds.reuters.com/reuters/entertainment'
 
 def getBbcRss():
 	return bbcRss
 
 def getCbcRss():
 	return cbcRss
+
+def getReutersRss():
+	return reutersRss

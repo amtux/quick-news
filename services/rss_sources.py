@@ -10,5 +10,20 @@ bbcRss['science-and-environment'] = 'http://feeds.bbci.co.uk/news/science_and_en
 bbcRss['technology'] = 'http://feeds.bbci.co.uk/news/technology/rss.xml'
 bbcRss['entertainment-and-arts'] = 'http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml'
 
+cbcRss = {}
+cbcRss['top-stories'] = 'http://rss.cbc.ca/lineup/topstories.xml'
+cbcRss['world'] = 'http://rss.cbc.ca/lineup/world.xml'
+cbcRss['canada'] = 'http://rss.cbc.ca/lineup/canada.xml'
+cbcRss['business'] = 'http://rss.cbc.ca/lineup/business.xml'
+cbcRss['politics'] = 'http://rss.cbc.ca/lineup/politics.xml'
+cbcRss['health'] = 'http://rss.cbc.ca/lineup/health.xml'
+cbcRss['technology-and-science'] = 'http://rss.cbc.ca/lineup/technology.xml'
+cbcRss['sports'] = 'http://rss.cbc.ca/lineup/sports.xml'
+cbcRss['toronto'] = 'http://rss.cbc.ca/lineup/canada-toronto.xml'
+
+
 def getBbcRss():
 	return bbcRss
+
+def getCbcRss():
+	return cbcRss

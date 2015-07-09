@@ -9,11 +9,9 @@ from shutil import copyfile
 import time
 import requests
 
-bbcRssDict = rss_sources.getBbcRss()
-
 def getNews(rssDict, service, searchedImages):
 	startTime = time.time()
-	directory = "./data/"
+	directory = "./data/" + service + '/'
 
 	if not os.path.exists(directory):
 		os.makedirs(directory)
@@ -27,7 +25,7 @@ def getNews(rssDict, service, searchedImages):
 		feed = feedparser.parse(value)
 		feedDict = {}
 		feedCounter = 0
-		for post in feed.entries[:10]: #limit to 10 entries per feed
+		for post in feed.entries[:1]: #limit to 10 entries per feed
 			imgUrl = "none"
 			if post.link in searchedImages:
 				imgUrl = searchedImages[post.link]
@@ -42,10 +40,13 @@ def getNews(rssDict, service, searchedImages):
 				if (imgSearchRequest.status_code == 200):
 					imgSearchData = imgSearchRequest.json()
 					try:
-						imgUrl = imgSearchData['responseData']['results'][0]['url'] #on success get best img
+						imgUrl = imgSearchData['responseData']['results'][0]['url']
+						if not 'image' in requests.get(imgUrl).headers['content-type']:
+							print("MISSED FIRST IMG URL = BAD CONTENT. SECOND FETCH!")
+							imgUrl = imgSearchData['responseData']['results'][1]['url']
 						searchedImages[post.link] = imgUrl	# add to image cache if img found
 						print('image not in cache but new one fetched for %s. done!' % post.link)
-					except (TypeError, IndexError):
+					except (TypeError, IndexError, requests.exceptions.MissingSchema):
 						print('DENIAL FROM GOOGLE for %s. failed!' % post.link)
 						imgUrl = "200F"
 				else:
@@ -60,7 +61,7 @@ def getNews(rssDict, service, searchedImages):
 		print('wrote file: %s' % fileName)
 
 	for key,value in rssDict.items():
-		source = directory + key + "-write.json"
+		source = directory +  key + "-write.json"
 		destination = directory + key + ".json"
 
 		if os.path.exists(source):
@@ -70,10 +71,19 @@ def getNews(rssDict, service, searchedImages):
 			print ('cannot copy file: source %s not found' % source)
 	print("--- %s seconds ---\n" % (time.time() - startTime))
 
+
 searchedImages = {}
 counter = 1
+bbcRssDict = rss_sources.getBbcRss()
+cbcRssDict = rss_sources.getCbcRss()
+
 while True:
 	getNews(bbcRssDict, 'bbc', searchedImages)
+	print("SERVICE BBC COMPLETE!")
+
+	getNews(cbcRssDict, 'cbc', searchedImages)
+	print("SERVICE CBC COMPLETE!")
+
 	print("Iteration # %d complete.\nSleeping for 1 hour\n" % counter)
 	time.sleep(3600)
 	counter += 1

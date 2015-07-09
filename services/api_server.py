@@ -3,7 +3,7 @@
 from flask import Flask, make_response, request, current_app, jsonify
 from datetime import timedelta
 from functools import update_wrapper
-from rss_sources import getBbcRss
+from rss_sources import getBbcRss, getCbcRss
 import json
 
 
@@ -61,8 +61,25 @@ def bbc():
         if url not in bbcRss:
             return jsonify(items="Requested category doesnt exist")
         else:
+            directory = "./data/bbc/"
             fileName = url + ".json"
-            directory = "./data/"
+            with open(directory + fileName) as f: 
+                s = json.load(f)
+            return jsonify(items=s)
+    else:
+        return jsonify(items="Feed category not defined")
+
+@app.route('/cbc')
+@crossdomain(origin='*', headers='Content-Type')
+def bbc():
+    if 'url' in request.args:
+        url = request.args['url']
+        cbcRss = getCbcRss()
+        if url not in cbcRss:
+            return jsonify(items="Requested category doesnt exist")
+        else:
+            directory = "./data/cbc/"
+            fileName = url + ".json"
             with open(directory + fileName) as f: 
                 s = json.load(f)
             return jsonify(items=s)
@@ -70,4 +87,4 @@ def bbc():
         return jsonify(items="Feed category not defined")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0',threaded=true)

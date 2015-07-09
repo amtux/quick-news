@@ -25,7 +25,7 @@ def getNews(rssDict, service, searchedImages):
 		feed = feedparser.parse(value)
 		feedDict = {}
 		feedCounter = 0
-		for post in feed.entries[:1]: #limit to 10 entries per feed
+		for post in feed.entries[:10]: #limit to 10 entries per feed
 			imgUrl = "none"
 			if post.link in searchedImages:
 				imgUrl = searchedImages[post.link]

@@ -6,8 +6,7 @@ import requests, io, os, json, shutil
 from pprint import pprint
 from pyteaser import SummarizeUrl
 from shutil import copyfile
-import time
-import requests
+import time, requests, urllib2
 
 def getNews(rssDict, service, searchedImages):
 	startTime = time.time()
@@ -27,7 +26,7 @@ def getNews(rssDict, service, searchedImages):
 		feedDict = {}
 		feedCounter = 0
 		# loop through posts in category
-		for post in feed.entries[:10]: #limit to 10 entries per feed
+		for post in feed.entries[:1]: #limit to 10 entries per feed
 			imgUrl = "none"
 			# caching enabled. this prevents asking google for images every-time
 			if post.link in searchedImages:
@@ -38,12 +37,14 @@ def getNews(rssDict, service, searchedImages):
 				query = '+'.join(query)
 				imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
 					service + "+" + query)
+
 				imgSearchRequest = requests.get(imgSearch)
 
 				if (imgSearchRequest.status_code == 200): #on get success
 					imgSearchData = imgSearchRequest.json()
 					try:
 						imgUrl = imgSearchData['responseData']['results'][0]['url']
+						imgUrl = urllib2.unquote(imgUrl);
 						# check if select url is actually an image
 						# if not, choose the next url
 						if not 'image' in requests.get(imgUrl).headers['content-type']:

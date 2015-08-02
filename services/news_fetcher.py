@@ -36,8 +36,11 @@ def getNews(rssDict, service, searchedImages):
 				else:
 					query = post.title.split()
 					query = '+'.join(query)
-					imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
-						service + "+" + query)
+					if(service == 'reuters'):
+						imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + query)
+					else:
+						imgSearch = ("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + 
+							service + "+" + query)
 
 					imgSearchRequest = requests.get(imgSearch, verify=False)
 

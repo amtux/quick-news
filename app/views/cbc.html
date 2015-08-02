@@ -15,7 +15,7 @@
 <loading-feed class="text-center"></loading-feed>
 
 <div class="container">
-  <div ng-repeat="entry in entries" id="feedNum{{$index}}" class="feed-entry row">
+  <div ng-repeat="entry in entries" ng-if="$index < postLimit" id="feedNum{{$index}}" class="feed-entry row">
     <h4><b>{{entry[0]}}</b></h4>
     <div class="para col-xs-12 col-sm-4 col-md-4 col-lg-4">
       <img ng-src="{{entry[3]}}" err-src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/CBC_News_Logo.svg/189px-CBC_News_Logo.svg.png" class="feed-image">
@@ -28,4 +28,8 @@
     </div>
     <hr>
   </div>
+  <div class="text-center">
+    <a class="btn btn-default" role="button" ng-show=" postLimit < numEntries " ng-click='showMorePosts()'>Load more news posts!</a>
+  </div>
+  <br>
 </div>

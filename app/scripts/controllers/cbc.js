@@ -15,12 +15,20 @@ angular.module('quickNewsApp')
       'Karma'
     ];
 
+	$scope.postLimit = 10;
+
+    $scope.showMorePosts = function() {
+    	$scope.postLimit += 5;
+    };
+
+
     $scope.isSet = function(checkTab) {
 		return this.tab === checkTab;
 	};
 
 	$scope.setTab = function(activeTab) {
 		this.tab = activeTab;
+		$scope.postLimit = 10;
 		$scope.getFeed(activeTab);
 	};
 
@@ -36,6 +44,7 @@ angular.module('quickNewsApp')
 		.success(function(data, status, headers, config) {
 			$scope.entries = data.items;
 			console.log($scope.entries);
+			$scope.numEntries = Object.keys($scope.entries).length;
 			$scope.loading = false;
 		})
 		.error(function(data, status, headers, config) {
